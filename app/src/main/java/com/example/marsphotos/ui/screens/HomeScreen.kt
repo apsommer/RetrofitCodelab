@@ -30,11 +30,19 @@ import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-    marsUiState: String,
+    marsUiState: MarsUiState,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
-    ResultScreen(marsUiState, modifier.padding(top = contentPadding.calculateTopPadding()))
+    when (marsUiState) {
+        is MarsUiState.Success ->
+            ResultScreen(
+                marsUiState.photos,
+                modifier.padding(top = contentPadding.calculateTopPadding()))
+
+        MarsUiState.Error -> TODO()
+        MarsUiState.Loading -> TODO()
+    }
 }
 
 /**
