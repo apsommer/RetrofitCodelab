@@ -11,8 +11,16 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(baseUrl)
     .build()
 
+// interface to RESTful web service
 interface MarsApiService {
 
     @GET("photos")
     fun getPhotos(): String
+}
+
+// expose retrofit instance as singleton
+object MarsAPi {
+    val retrofitService: MarsApiService by lazy {
+        retrofit.create(MarsApiService::class.java)
+    }
 }
