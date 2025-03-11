@@ -15,11 +15,11 @@ private val retrofit = Retrofit.Builder()
 interface MarsApiService {
 
     @GET("photos")
-    fun getPhotos(): String
+    suspend fun getPhotos(): String
 }
 
 // expose retrofit instance as singleton
-object MarsAPi {
+object MarsApi {
     val retrofitService: MarsApiService by lazy {
         retrofit.create(MarsApiService::class.java)
     }
